@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, jsonify
+from flask_cors import CORS
 import pandas as pd
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
@@ -6,6 +7,8 @@ from pymongo import MongoClient
 from bson import ObjectId
 
 app = Flask(__name__)
+
+CORS(app)
 
 # MongoDB Connection
 userName = "kuber"
@@ -136,6 +139,10 @@ def home():
 def recommend():
     print("Received a request to recommend pandits.")
     booking_id = request.form.get('booking_id')
+    # data = request.get_json()
+    
+#     # Extract booking_id from the JSON data
+#     booking_id = data.get('booking_id')
     if not booking_id:
         print("No booking_id provided in the request.")
         return jsonify({"message": "Booking ID is required."})
@@ -155,3 +162,5 @@ def recommend():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+
