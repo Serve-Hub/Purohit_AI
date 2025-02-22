@@ -128,6 +128,10 @@ def recommend_pandits(booking_id):
     return recommended_details_sorted
 
 # Flask Route for Recommendation
+@app.route('/')
+def home():
+    return "Welcome to the Purohit Recommendation System!"
+
 @app.route('/recommend_pandits', methods=['POST'])
 def recommend():
     print("Received a request to recommend pandits.")
