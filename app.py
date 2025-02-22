@@ -138,11 +138,10 @@ def home():
 @app.route('/recommend_pandits', methods=['POST'])
 def recommend():
     print("Received a request to recommend pandits.")
-    booking_id = request.form.get('booking_id')
-    # data = request.get_json()
-    
+    # booking_id = request.form.get('booking_id')
+    booking_id = request.json.get('booking_id')
 #     # Extract booking_id from the JSON data
-#     booking_id = data.get('booking_id')
+    # booking_id = data.get('booking_id')
     if not booking_id:
         print("No booking_id provided in the request.")
         return jsonify({"message": "Booking ID is required."})
